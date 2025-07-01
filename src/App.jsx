@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import StatCards from "./components/StatCards.jsx";
 
 import { useEffect, useState } from "react";
 import { fetchUserById } from "./services/apiMock.js";
@@ -25,6 +26,18 @@ function App() {
 					<p className="text-gray-600 mb-8">
 						Félicitations ! Vous avez explosé vos objectifs hier 👏
 					</p>
+					<div className="flex">
+						{user && (
+							<StatCards
+								data={{
+									calories: user.data.keyData.calories,
+									proteins: user.data.keyData.proteins,
+									carbs: user.data.keyData.carbs,
+									fats: user.data.keyData.fats,
+								}}
+							/>
+						)}
+					</div>
 				</main>
 			</div>
 		</>
