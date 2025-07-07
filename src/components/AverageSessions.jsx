@@ -15,15 +15,14 @@ function AverageSessions({ averageSessions }) {
 		sessionLength: session.sessionLength,
 	}));
 	return (
-		<ResponsiveContainer width="100%" height="100%">
-			<LineChart width={300} height={100} data={averageSessionsData}>
-				<Line
-					type="monotone"
-					dataKey="sessionLength"
-					stroke="#8884d8"
-					strokeWidth={2}
-					dot={false}
-				/>
+		<ResponsiveContainer width="100%" height="100%" className={"center"}>
+			<LineChart
+				width={300}
+				height={100}
+				data={averageSessionsData}
+				margin={{ top: 40, right: 15, bottom: 50, left: 5 }}
+			>
+				<Line type="natural" dataKey="sessionLength" stroke="#8884d8" strokeWidth={2} dot={false} />
 				<XAxis dataKey="day" axisLine={false} tickLine={false} />
 				<Tooltip />
 			</LineChart>
