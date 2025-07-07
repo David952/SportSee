@@ -27,14 +27,16 @@ function DailyActivity({ activity }) {
 					left: 20,
 					bottom: 5,
 				}}
+				barSize={7}
+				barGap={9}
 			>
 				<CartesianGrid strokeDasharray="3 3" vertical={false} />
-				<XAxis dataKey="day" />
+				<XAxis dataKey="day" axisLine={false} tickLine={false} />
 				<YAxis orientation="right" axisLine={false} tickLine={false} />
 				<Tooltip />
-				<Legend />
-				<Bar dataKey="kilogram" fill="#282D30" />
-				<Bar dataKey="calories" fill="#E60000" />
+				<Legend iconType="circle" iconSize={8} align="right" verticalAlign="top" />
+				<Bar dataKey="kilogram" fill="#282D30" radius={[10, 10, 0, 0]} />
+				<Bar dataKey="calories" fill="#E60000" radius={[10, 10, 0, 0]} />
 			</BarChart>
 		</ResponsiveContainer>
 	);
