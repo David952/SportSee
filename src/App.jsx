@@ -28,12 +28,12 @@ function App() {
 	}, []);
 
 	return (
-		<>
+		<div className="font-roboto">
 			<Header />
 			<div className="flex">
 				<Sidebar />
 
-				<main className="h-screen">
+				<main className="h-screen w-[100%]">
 					<h1 className="text-3xl font-bold mb-4">
 						Bonjour
 						{user && <span className="text-red-500"> {user.data.userInfos.firstName}</span>}
@@ -42,14 +42,16 @@ function App() {
 						Félicitations ! Vous avez explosé vos objectifs hier 👏
 					</p>
 					<div className="flex">
-						<div className="flex flex-col mr-8">
-							<div className="bg-[#FBFBFB] h-[320px] w-[835px] mb-7">
-								<h2>Activité quotidienne</h2>
+						<div className="flex flex-col mr-8 flex-1">
+							<div className="bg-[#FBFBFB] h-[320px] w-[100%] mb-33">
+								<h2 className="mt-6 ml-8 mb-16 font-medium">Activité quotidienne</h2>
 								{activity ? <DailyActivity activity={activity} /> : "Chargement..."}
 							</div>
 							<div className="flex justify-between">
-								<div className="bg-[#FBFBFB] h-[263px] w-[258px]">
-									<h2>Durée moyenne des sessions</h2>
+								<div className="bg-[#FBFBFB] h-[263px] w-[258px] bg-[#FF0000] rounded-md">
+									<h2 className="text-white opacity-[0.5] w-[147px] mt-[29px] ml-[34px]">
+										Durée moyenne des sessions
+									</h2>
 									{averageSessions ? (
 										<AverageSessions averageSessions={averageSessions} />
 									) : (
@@ -82,7 +84,7 @@ function App() {
 					</div>
 				</main>
 			</div>
-		</>
+		</div>
 	);
 }
 
