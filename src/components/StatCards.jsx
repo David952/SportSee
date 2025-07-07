@@ -14,7 +14,7 @@ const StatCard = ({ icon, value, unit, label }) => (
 				{value}
 				<span className="text-sm font-normal">{unit}</span>
 			</p>
-			<p className="text-sm text-gray-500">{label}</p>
+			<p className="text-sm text-grey">{label}</p>
 		</div>
 	</article>
 );
@@ -48,7 +48,7 @@ const StatCards = ({ data }) => {
 	];
 
 	return (
-		<div className="flex flex-col gap-10">
+		<div className="flex flex-col gap-18">
 			{stats.map((stat, index) => (
 				<StatCard
 					key={index}
