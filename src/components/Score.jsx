@@ -27,7 +27,7 @@ function Score({ score }) {
 			</ResponsiveContainer>
 			<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
 				<p className="text-2xl font-bold">{data[0].value}%</p>
-				<p className="text-base text-gray-400">de votre objectif</p>
+				<p className="text-base text-grey">de votre objectif</p>
 			</div>
 		</div>
 	);
