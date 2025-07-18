@@ -11,6 +11,7 @@ function Score({ score }) {
 
 	return (
 		<div className="relative w-full h-full">
+			<h2>Score</h2>
 			<ResponsiveContainer width="100%" height="100%">
 				<RadialBarChart
 					cx="50%"
