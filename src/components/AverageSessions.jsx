@@ -3,10 +3,9 @@ import {
 	Line,
 	XAxis,
 	YAxis,
-	CartesianGrid,
 	Tooltip,
-	Legend,
 	ResponsiveContainer,
+	ReferenceArea,
 } from "recharts";
 
 function AverageSessions({ averageSessions }) {
@@ -14,19 +13,50 @@ function AverageSessions({ averageSessions }) {
 		day: session.day,
 		sessionLength: session.sessionLength,
 	}));
+
+	const SessionTooltip = ({ active, payload }) => {
+		if (active && payload) {
+			return (
+				<div className="bg-white text-black text-xs px-2 py-1">
+					<p>{payload[0].value} min</p>
+				</div>
+			);
+		}
+		return null;
+	};
+
 	return (
-		<ResponsiveContainer width="100%" height="100%" className={"center"}>
-			<LineChart
-				width={300}
-				height={100}
-				data={averageSessionsData}
-				margin={{ top: 40, right: 15, bottom: 50, left: 5 }}
-			>
-				<Line type="natural" dataKey="sessionLength" stroke="#8884d8" strokeWidth={2} dot={false} />
-				<XAxis dataKey="day" axisLine={false} tickLine={false} />
-				<Tooltip />
-			</LineChart>
-		</ResponsiveContainer>
+		<>
+			<h2 className="text-white opacity-[0.5] w-[147px] mt-[29px] ml-[34px]">
+				Durée moyenne des sessions
+			</h2>
+			<ResponsiveContainer width="100%" height="100%" className={"center"}>
+				<LineChart data={averageSessionsData} margin={{ top: 40, right: 15, bottom: 50, left: 5 }}>
+					<defs>
+						<linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+							<stop offset="0%" stopColor="white" stopOpacity={0.4} />
+							<stop offset="100%" stopColor="white" stopOpacity={1} />
+						</linearGradient>
+					</defs>
+					<Line
+						type="natural"
+						dataKey="sessionLength"
+						stroke="url(#lineGradient)"
+						strokeWidth={2}
+						dot={false}
+					/>
+					<XAxis
+						dataKey="day"
+						axisLine={false}
+						tickLine={false}
+						tick={{ fill: "black", opacity: 0.6 }}
+						tickMargin={10}
+					/>
+
+					<Tooltip content={<SessionTooltip />} cursor={false} />
+				</LineChart>
+			</ResponsiveContainer>
+		</>
 	);
 }
 export default AverageSessions;
