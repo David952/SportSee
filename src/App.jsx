@@ -12,20 +12,42 @@ import {
 	fetchUserActivityById,
 	fetchUserAverageSessionsById,
 	fetchUserPerformanceById,
-} from "./services/apiMock.js";
+} from "./services/apiService.js";
 
 function App() {
+	const [userId, setUserId] = useState(12);
 	const [user, setUser] = useState(null);
 	const [activity, setActivity] = useState(null);
 	const [averageSessions, setAverageSessions] = useState(null);
 	const [performance, setPerformance] = useState(null);
 
 	useEffect(() => {
-		fetchUserById(1).then(setUser);
-		fetchUserActivityById(1).then(setActivity);
-		fetchUserAverageSessionsById(1).then(setAverageSessions);
-		fetchUserPerformanceById(1).then((data) => setPerformance(data));
-	}, []);
+		const fetchData = async () => {
+			try {
+				const userData = await fetchUserById(userId);
+				setUser(userData);
+
+				const activityData = await fetchUserActivityById(userId);
+				setActivity(activityData);
+
+				const sessionsData = await fetchUserAverageSessionsById(userId);
+				setAverageSessions(sessionsData);
+
+				const performanceData = await fetchUserPerformanceById(userId);
+				setPerformance(performanceData);
+			} catch (err) {
+				setError(err.message);
+				console.error("Erreur lors de la récupération des données:", err);
+			}
+		};
+
+		fetchData();
+	}, [userId]);
+
+	const handleUserChange = () => {
+		// Alterner entre les IDs disponibles (12 et 18)
+		setUserId((prevId) => (prevId === 12 ? 18 : 12));
+	};
 
 	return (
 		<div className="font-roboto">
@@ -33,25 +55,30 @@ function App() {
 			<div className="flex">
 				<Sidebar />
 
-				<main className="h-screen w-[100%]">
+				<main className="w-[100%] m-14">
 					<h1 className="text-3xl font-bold mb-4">
 						Bonjour
-						{user && <span className="text-red-500"> {user.data.userInfos.firstName}</span>}
+						{user && (
+							<span
+								className="text-red-500 cursor-pointer"
+								onClick={handleUserChange}
+								title="Changer d'utilisateur"
+							>
+								{" "}
+								{user.data.userInfos.firstName}
+							</span>
+						)}
 					</h1>
 					<p className="text-gray-600 mb-8">
 						Félicitations ! Vous avez explosé vos objectifs hier 👏
 					</p>
-					<div className="flex">
+					<div className="flex flex-wrap">
 						<div className="flex flex-col mr-8 flex-1">
-							<div className="bg-[#FBFBFB] h-[320px] w-[100%] mb-33">
-								<h2 className="mt-6 ml-8 mb-16 font-medium">Activité quotidienne</h2>
+							<div className="h-[320px] w-[100%] mb-33">
 								{activity ? <DailyActivity activity={activity} /> : "Chargement..."}
 							</div>
 							<div className="flex justify-between">
-								<div className="bg-[#FBFBFB] h-[263px] w-[258px] bg-[#FF0000] rounded-md">
-									<h2 className="text-white opacity-[0.5] w-[147px] mt-[29px] ml-[34px]">
-										Durée moyenne des sessions
-									</h2>
+								<div className="h-[263px] w-[258px] bg-[#FF0000] rounded-md">
 									{averageSessions ? (
 										<AverageSessions averageSessions={averageSessions} />
 									) : (
@@ -66,18 +93,21 @@ function App() {
 									)}
 								</div>
 								<div className="bg-[#FBFBFB] h-[263px] w-[258px]">
-									<h2>Score</h2>
-									{user ? <Score score={user.data.todayScore} /> : "Chargement..."}
+									{user ? (
+										<Score score={user.data.todayScore || user.data.score} />
+									) : (
+										"Chargement..."
+									)}
 								</div>
 							</div>
 						</div>
 						{user && (
 							<StatCards
 								data={{
-									calories: user.data.keyData.calories,
-									proteins: user.data.keyData.proteins,
-									carbs: user.data.keyData.carbs,
-									fats: user.data.keyData.fats,
+									calories: user.data.keyData.calorieCount,
+									proteins: user.data.keyData.proteinCount,
+									carbs: user.data.keyData.carbohydrateCount,
+									fats: user.data.keyData.lipidCount,
 								}}
 							/>
 						)}
