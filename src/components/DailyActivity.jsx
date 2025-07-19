@@ -46,7 +46,6 @@ function DailyActivity({ activity }) {
 		...session,
 		day: index + 1,
 	}));
-	console.log(dailyActivityData);
 
 	return (
 		<>
@@ -67,7 +66,7 @@ function DailyActivity({ activity }) {
 				>
 					<CartesianGrid strokeDasharray="3 3" vertical={false} />
 					<XAxis dataKey="day" axisLine={false} tickLine={false} />
-					<YAxis axisLine={false} tickLine={false} />
+					<YAxis orientation="right" axisLine={false} tickLine={false} />
 					<Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(196, 196, 196, 0.5)" }} />
 					<Legend
 						align="right"
