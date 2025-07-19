@@ -48,7 +48,7 @@ const StatCards = ({ data }) => {
 	];
 
 	return (
-		<div className="flex flex-col gap-18">
+		<div className="flex flex-wrap min-2xl:flex-col min-2xl:gap-18 min-lg:flex-row min-lg:gap-15 min-lg:mt-[70px]">
 			{stats.map((stat, index) => (
 				<StatCard
 					key={index}
