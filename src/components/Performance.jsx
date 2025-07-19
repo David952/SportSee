@@ -8,8 +8,18 @@ import {
 } from "recharts";
 
 export default function Performance({ data, kind }) {
+	// Traduction des types de performance
+	const traduireKind = {
+		cardio: "Cardio",
+		energy: "Énergie",
+		endurance: "Endurance",
+		strength: "Force",
+		speed: "Vitesse",
+		intensity: "Intensité",
+	};
+
 	const performanceData = data.map((item) => ({
-		subject: kind[item.kind],
+		subject: traduireKind[kind[item.kind]],
 		value: item.value,
 	}));
 
