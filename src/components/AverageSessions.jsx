@@ -9,8 +9,21 @@ import {
 } from "recharts";
 
 function AverageSessions({ averageSessions }) {
+	const getDayLetter = (day) => {
+		const days = {
+			1: "L",
+			2: "M",
+			3: "M",
+			4: "J",
+			5: "V",
+			6: "S",
+			7: "D",
+		};
+		return days[day];
+	};
+
 	const averageSessionsData = averageSessions.data.sessions.map((session) => ({
-		day: session.day,
+		day: getDayLetter(session.day),
 		sessionLength: session.sessionLength,
 	}));
 
