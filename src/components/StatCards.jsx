@@ -5,7 +5,7 @@ import lipidesIcon from "../assets/icons/lipides.png";
 
 const StatCard = ({ icon, value, unit, label }) => (
 	<article
-		className="bg-[#FBFBFB] h-[124px] w-[258px] p-4 rounded-lg flex items-center space-x-4"
+		className="bg-[#FBFBFB] h-[124px] w-[180px] 2lg:w-[258px] p-4 rounded-lg flex items-center space-x-4"
 		aria-label={`${label}: ${value}${unit}`}
 	>
 		<span>{icon}</span>
@@ -48,7 +48,7 @@ const StatCards = ({ data }) => {
 	];
 
 	return (
-		<div className="flex flex-wrap min-2xl:flex-col min-2xl:gap-18 min-lg:flex-row min-lg:gap-15 min-lg:mt-[70px]">
+		<div className="flex gap-18 min-2xl:flex-col min-lg:flex-col ">
 			{stats.map((stat, index) => (
 				<StatCard
 					key={index}
