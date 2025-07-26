@@ -55,7 +55,7 @@ function App() {
 			<div className="flex">
 				<Sidebar />
 
-				<main className="w-[100%] m-14">
+				<main className="w-[82%] mt-16 ml-16">
 					<h1 className="text-3xl font-bold mb-4">
 						Bonjour
 						{user && (
@@ -73,26 +73,26 @@ function App() {
 						Félicitations ! Vous avez explosé vos objectifs hier 👏
 					</p>
 					<div className="flex flex-wrap">
-						<div className="flex flex-col mr-8 flex-1">
+						<div className="flex flex-col w-[65%] mr-4 2lg:mr-8 flex-1">
 							<div className="h-[320px] w-[100%] mb-33">
 								{activity ? <DailyActivity activity={activity} /> : "Chargement..."}
 							</div>
 							<div className="flex justify-between">
-								<div className="h-[263px] w-[258px] bg-[#FF0000] rounded-md">
+								<div className="h-[263px] w-[212px] 2lg:w-[258px] bg-[#FF0000] rounded-md">
 									{averageSessions ? (
 										<AverageSessions averageSessions={averageSessions} />
 									) : (
 										"Chargement..."
 									)}
 								</div>
-								<div className="bg-[#FBFBFB] h-[263px] w-[258px]">
+								<div className="bg-[#FBFBFB] h-[263px] w-[212px] 2lg:w-[258px]">
 									{performance ? (
 										<Performance data={performance.data.data} kind={performance.data.kind} />
 									) : (
 										"Chargement..."
 									)}
 								</div>
-								<div className="bg-[#FBFBFB] h-[263px] w-[258px]">
+								<div className="bg-[#FBFBFB] h-[263px] w-[212px] 2lg:w-[258px]">
 									{user ? (
 										<Score score={user.data.todayScore || user.data.score} />
 									) : (
