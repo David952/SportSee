@@ -4,4 +4,5 @@
 @theme {
 	--font-roboto: "Roboto", sans-serif;
 	--color-grey: #74798c;
+	--breakpoint-2lg: 65rem;
 }
