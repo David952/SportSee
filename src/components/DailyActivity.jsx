@@ -27,7 +27,7 @@ const CustomLegend = ({ payload }) => {
 	const ordered = order.map((key) => payload.find((item) => item.dataKey === key)).filter(Boolean);
 
 	return (
-		<ul className="flex gap-4 justify-end pr-8 pt-4 text-sm">
+		<ul className="flex absolute top-[-22px] right-[54px] gap-4 justify-end text-sm">
 			{ordered.map((entry, index) => (
 				<li key={index} className="flex items-center gap-2">
 					<span
