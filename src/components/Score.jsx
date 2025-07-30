@@ -26,7 +26,7 @@ function Score({ score }) {
 					startAngle={90}
 					endAngle={450}
 				>
-					<RadialBar minAngle={15} background clockWise dataKey="value" cornerRadius={10} />
+					<RadialBar minAngle={15} clockWise dataKey="value" cornerRadius={10} />
 				</RadialBarChart>
 			</ResponsiveContainer>
 			<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
